@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тайтл</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal-default-theme.css" integrity="sha512-nF9G9AnUEVv+zx285OqwGE8c1gmkys3qV6iuDK5rVG/UuZLWRgGBy/tN5WzSXXuZDZ1YvwhJ9+a/DTj71L8Lrw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="css/swiper-bundle.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="site_wrapper">
+<div class="burger_menu">
+<div class="content-padding">
+<div class="burger_top">
+<div class="close"></div>
+<div class="logo">
+<a href="">
+<img src="files/b_logo.svg" alt="">
+</a>
+</div>
+<a href="" class="login_btn"></a>
+</div>
+<form action="" class="search_form">
+<input type="text">
+<button class="btn">Найти</button>
+</form>
+<div class="menu_block">
+<div class="left_menu">
+<ul class="menu_list">
+<li>
+<span>Продукция</span>
+<ul>
+<li><a href="">По коллекциям</a></li>
+<li><a href="">По категориям</a></li>
+<li><a href="">Где купить</a></li>
+<li><a href="">Каталоги и брошюры</a></li>
+</ul>
+</li>
+<li>
+<a href="">
+<span>О компании</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href="">Новости</a></li>
+<li><a href="">Контакты</a></li>
+<li><a href="">Сервис</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="contacts">
+<div class="link">
+<a href="">Связаться с нами</a>
+</div>
+<div class="phone">
+<a href="tel:+7 (495) 215 07 71">+7 (495) 215 07 71</a>
+</div>
+<div class="email">
+<a href="mailto:info@sancos.su">info@sancos.su</a>
+</div>
+</div>
+<div class="right_menu">
+<div class="col">
+<ul class="menu_list">
+<li>
+<a href="">
+<span>Мебель для ванной комнаты</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>Тумбы под раковину </span><span class="count">110</span></a></li>
+<li><a href=""><span>Тумбы под столешницу </span><span class="count">88</span></a></li>
+<li><a href=""><span>Пеналы подвесные </span><span class="count">231</span></a></li>
+<li><a href=""><span>Пеналы напольные </span><span class="count">100</span></a></li>
+</ul>
+</li>
+<li>
+<a href="">
+<span>Смесители для ванной</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>Смесители для раковины </span><span class="count">30</span></a></li>
+<li><a href=""><span>Смесители для биде </span><span class="count">58</span></a></li>
+<li><a href=""><span>Гигиенические души </span><span class="count">112</span></a></li>
+<li><a href=""><span>Смесители для ванны </span><span class="count">75</span></a></li>
+</ul>
+</li>
+<li>
+<a href="">
+<span>Смесители для кухни</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>С гибким изливом </span><span class="count">34</span></a></li>
+<li><a href=""><span>С поворотным изливом </span><span class="count">25</span></a></li>
+<li><a href=""><span>С подключением фильтра для воды </span><span class="count">44</span></a></li>
+<li><a href=""><span>Дозаторы для мойки </span><span class="count">121</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="col">
+<ul class="menu_list">
+<li>
+<a href="">
+<span>Зеркала и зеркальные шкафы</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>Зеркала </span><span class="count">42</span></a></li>
+<li><a href=""><span>Зеркальные шкафы </span><span class="count">14</span></a></li>
+</ul>
+</li>
+<li>
+<a href="">
+<span>Душевые системы</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>Душевые комплекты</span><span class="count">33</span></a></li>
+<li><a href=""><span>Душевые стойки </span><span class="count">23</span></a></li>
+</ul>
+</li>
+<li>
+<a href="">
+<span>Комплектующие для душевых систем</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>Шланги</span><span class="count">71</span></a></li>
+<li><a href=""><span>Лейки </span><span class="count">12</span></a></li>
+</ul>
+</li>
+<li>
+<a href="">
+<span>Ванны</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>Пристенные </span><span class="count">14</span></a></li>
+<li><a href=""><span>Угловые </span><span class="count">10</span></a></li>
+<li><a href=""><span>Отдельностоящие </span><span class="count">7</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="col">
+<ul class="menu_list">
+<li>
+<a href="">
+<span>Аксессуары</span>
+<span class="arrow"></span>
+</a>
+<ul>
+<li><a href=""><span>Держатели зубных щёток </span><span class="count">29</span></a></li>
+<li><a href=""><span>Держатели туалетной бумаги </span><span class="count">6</span></a></li>
+<li><a href=""><span>Дозаторы </span><span class="count">13</span></a></li>
+<li><a href=""><span>Ёршики для унитаза </span><span class="count">4</span></a></li>
+<li><a href=""><span>Крючки </span><span class="count">22</span></a></li>
+<li><a href=""><span>Мыльницы </span><span class="count">18</span></a></li>
+<li><a href=""><span>Полки для полотенец </span><span class="count">6</span></a></li>
+<li><a href=""><span>Полотенцедержатели </span><span class="count">26</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>                          
+</div>
+</div>
+<header class="header">
+<div class="content-padding">
+<div class="burger"></div>
+<div class="logo">
+<a href="">
+<img src="files/logo.svg" alt="">
+</a>
+</div>
+<div class="right">
+<button class="search_btn"></button>
+<a href="" class="login_btn"></a>
+</div>
+</div>
+<div class="search_form_block">
+<div class="content-padding">
+<form action="">
+<input type="text">
+<button class="btn">Найти</button>
+</form>
+</div>
+</div>
+</header>
+<div class="content_block_wr"><section class="section_block main_block_slider">
+<div class="swiper mySwiper_banner" data-id="mySwiper_banner" data-arrow="banner">
+<div class="arrows_block">
+<div class="arrows">
+<div class="arrow_btn prev"></div>
+<div class="arrow_btn next"></div>
+</div>
+</div>
+<div class="swiper-wrapper">
+<div class="swiper-slide">
+<picture>
+<source media="(min-width: 768px)" srcset="files/slider_ban_top.jpg">
+<source media="(max-width: 767px)" srcset="files/header-slider_mobile.jpg">
+<img src="files/slider_ban_top.jpg" alt="">
+</picture>
+<div class="slide_inner">
+<div class="content-padding">
+<div class="inner">
+<div class="title"><span>etna.</span> <br>торжество единого стиля</div>
+<div class="text">Широкий ассортимент смесителей <br>и душевых систем в единой цветовой гамме</div>
+<a href="" class="btn_button white border_white">
+<span>Смотреть коллекцию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="swiper-slide grey_color">
+<picture>
+<source media="(min-width: 768px)" srcset="files/slider_ban_top2.jpg">
+<source media="(max-width: 767px)" srcset="files/header-slider_mobile2.jpg">
+<img src="files/slider_ban_top2.jpg" alt="">
+</picture>
+<div class="slide_inner">
+<div class="content-padding">
+<div class="inner">
+<div class="title">SQUARE 2.0 <br>Уют и технологичность</div>
+<div class="text">Три варианта подсветки с функцией памяти <br> и управление взмахом</div>
+<a href="" class="btn_button grey border_grey">
+<span>Смотреть коллекцию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<picture>
+<source media="(min-width: 768px)" srcset="files/slider_ban_top23.jpg">
+<source media="(max-width: 767px)" srcset="files/header-slider_mobile3.jpg">
+<img src="files/slider_ban_top23.jpg" alt="">
+</picture>
+<div class="slide_inner">
+<div class="content-padding">
+<div class="inner">
+<div class="title">Sfera 2.0 <br>Уют и технологичность</div>
+<div class="text">Три варианта подсветки с функцией памяти и управление взмахом</div>
+<a href="" class="btn_button white border_white">
+<span>Смотреть коллекцию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<picture>
+<source media="(min-width: 768px)" srcset="files/slider_ban_top4.jpg">
+<source media="(max-width: 767px)" srcset="files/header-slider_mobile4.jpg">
+<img src="files/slider_ban_top4.jpg" alt="">
+</picture>
+<div class="slide_inner">
+<div class="content-padding">
+<div class="inner">
+<div class="title">Новая линейка ванн SANCOS. <br>совершенные формы</div>
+<div class="text">Отдельностоящие, пристенные и угловые <br> варианты с гладким или рифлёным фасадом</div>
+<a href="" class="btn_button white border_white">
+<span>Смотреть коллекцию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<picture>
+<source media="(min-width: 768px)" srcset="files/slider_ban_top5.jpg">
+<source media="(max-width: 767px)" srcset="files/header-slider_mobile5.jpg">
+<img src="files/slider_ban_top5.jpg" alt="">
+</picture>
+<div class="slide_inner">
+<div class="content-padding">
+<div class="inner">
+<div class="title">SNOB R. <br>идеальный баланс</div>
+<div class="text">Три цветовых решения и шесть размеров тумб в современном функциональном дизайне</div>
+<a href="" class="btn_button white border_white">
+<span>Смотреть коллекцию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<picture>
+<source media="(min-width: 768px)" srcset="files/slider_ban_top6.jpg">
+<source media="(max-width: 767px)" srcset="files/header-slider_mobile6.jpg">
+<img src="files/slider_ban_top6.jpg" alt="">
+</picture>
+<div class="slide_inner">
+<div class="content-padding">
+<div class="inner">
+<div class="title">LINK. <br>Личный оазис</div>
+<div class="text">Интерактивная душевая  <br>система с термостатическим смесителем</div>
+<a href="" class="btn_button white border_white">
+<span>Смотреть коллекцию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<picture>
+<source media="(min-width: 768px)" srcset="files/slider_ban_top7.jpg">
+<source media="(max-width: 767px)" srcset="files/header-slider_mobile7.jpg">
+<img src="files/slider_ban_top7.jpg" alt="">
+</picture>
+<div class="slide_inner">
+<div class="content-padding">
+<div class="inner">
+<div class="title">Space. <br>Искусство потока</div>
+<div class="text">Профессиональная встраиваемая система <br> для душа с термостатическим смесителем</div>
+<a href="" class="btn_button white border_white">
+<span>Смотреть коллекцию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section_block block_slider">
+<div class="bathroom-slider">
+<div class="arrows">
+<div class="arrow_btn prev"></div>
+<div class="arrow_btn next"></div>
+</div>
+<div class="swiper bathroomSwiper">
+<div class="swiper-wrapper">
+<!-- Slide 1 -->
+<div class="swiper-slide">
+<div class="slide-content">
+<img src="files/sl1.jpg" alt="Ванная комната">
+<div class="slide-overlay">
+<h2 class="slide-title">Мебель для ванной</h2>
+<a href="" class="btn_button white border_white">
+<span>Перейти в категорию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+<!-- Slide 2 -->
+<div class="swiper-slide">
+<div class="slide-content">
+<img src="files/sl2.jpg" alt="Смесители">
+<div class="slide-overlay">
+<h2 class="slide-title">Смесители</h2>
+<a href="" class="btn_button white border_white">
+<span>Перейти в категорию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+<!-- Slide 3 -->
+<div class="swiper-slide">
+<div class="slide-content">
+<img src="files/sl3.jpg" alt="Аксессуары">
+<div class="slide-overlay">
+<h2 class="slide-title">Аксессуары</h2>
+<a href="" class="btn_button white border_white">
+<span>Перейти в категорию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<div class="slide-content">
+<img src="files/sl3.jpg" alt="Аксессуары">
+<div class="slide-overlay">
+<h2 class="slide-title">Аксессуары</h2>
+<a href="" class="btn_button white border_white">
+<span>Перейти в категорию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+<div class="swiper-slide">
+<div class="slide-content">
+<img src="files/sl3.jpg" alt="Аксессуары">
+<div class="slide-overlay">
+<h2 class="slide-title">Аксессуары</h2>
+<a href="" class="btn_button white border_white">
+<span>Перейти в категорию</span>
+<i>
+<svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.394531 8.26953L4.33203 4.33203L0.394531 0.394532" stroke="white" stroke-width="0.7875" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="section_block block_slider_list">
+<div class="swiper mySwiper_list" data-id="mySwiper_list" data-arrow="list">
+<div class="arrows">
+<div class="arrow_btn prev"></div>
+<div class="arrow_btn next"></div>
+</div>
+<div class="swiper-wrapper">
+<div class="swiper-slide">
+<div class="content-padding">
+<div class="btn_title">
+<a href="" class="btn_button white border_white">
+<span>Мебель для ванной</span>
+</a>
+</div>
+<div class="inner">
+<div class="list">
+<a href="#" class="name">Cento</a>
+<a href="#" class="name">Code</a>
+<a href="#" class="name">Delta</a>
+<a href="#" class="name">Folk</a>
+<a href="#" class="name">Folk Floor</a>
+<a href="#" class="name">Libra</a>
+<a href="#" class="name">Libra Floor</a>
+<a href="#" class="name">Marmi 1.0</a>
+<a href="#" class="name">Marmi 2.0</a>
+</div>
+<div class="list">
+<a href="#" class="name">Mini</a>
+<a href="#" class="name">Norma 2.0</a>
+<a href="#" class="name">Smart</a>
+<a href="#" class="name">Snob R</a>
+<a href="#" class="name">Snob R 1.0</a>
+<a href="#" class="name">Snob T</a>
+<a href="#" class="name">Stone</a>
+<a href="#" class="name">Urban</a>
+<a href="#" class="name">Very</a>
+</div>  
+</div>
+</div>      
+</div>
+<div class="swiper-slide">
+<div class="content-padding">
+<div class="btn_title">
+<a href="" class="btn_button white border_white">
+<span>Мебель для ванной</span>
+</a>
+</div>
+<div class="inner">
+<div class="list">
+<a href="#" class="name">Etna</a>
+<a href="#" class="name">Linn</a>
+<a href="#" class="name">Nexus</a>
+<a href="#" class="name">Studio</a>
+<a href="#" class="name">Atom</a>
+<a href="#" class="name">Start</a>
+</div>
+</div>
+</div>      
+</div>
+<div class="swiper-slide">
+<div class="content-padding">
+<div class="btn_title">
+<a href="" class="btn_button white border_white">
+<span>Мебель для ванной</span>
+</a>
+</div>
+<div class="inner">
+<div class="list">
+<a href="" class="name">Arcadia</a>
+<a href="" class="name">Arcadia 1.0</a>
+<a href="" class="name">Bella</a>
+<a href="" class="name">City</a>
+<a href="" class="name">City 2.0</a>
+<a href="" class="name">Dames</a>
+<a href="" class="name">Oval</a>
+</div>
+<div class="list">
+<a href="" class="name">Palace</a>
+<a href="" class="name">Polo</a>
+<a href="" class="name">Ray</a>
+<a href="" class="name">Sfera</a>
+<a href="" class="name">Sfera 2.0</a>
+<a href="" class="name">Solo</a>
+</div>      
+<div class="list">
+<a href="" class="name">Square</a>
+<a href="" class="name">Square 2.0</a>
+<a href="" class="name">Cube</a>
+<a href="" class="name">Diva</a>
+<a href="" class="name">Evoke</a>
+<a href="" class="name">Hilton</a>
+<a href="" class="name">Mirror</a>
+<a href="" class="name">Very</a>
+</div>            
+</div>
+</div>      
+</div>
+</div>
+</div>
+<div class="images">
+<div class="image" data-name="Cento">
+<picture>
+<source media="(min-width: 768px)" srcset="files/general-1.jpg">
+<source media="(max-width: 767px)" srcset="files/general-1.jpg">
+<img src="files/general-1.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Code">
+<picture>
+<source media="(min-width: 768px)" srcset="files/code.jpg">
+<source media="(max-width: 767px)" srcset="files/code.jpg">
+<img src="files/code.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Delta">
+<picture>
+<source media="(min-width: 768px)" srcset="files/delta.jpg">
+<source media="(max-width: 767px)" srcset="files/delta.jpg">
+<img src="files/delta.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Folk">
+<picture>
+<source media="(min-width: 768px)" srcset="files/folk.jpg">
+<source media="(max-width: 767px)" srcset="files/folk.jpg">
+<img src="files/folk.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Folk Floor">
+<picture>
+<source media="(min-width: 768px)" srcset="files/folk-floor.jpg">
+<source media="(max-width: 767px)" srcset="files/folk-floor.jpg">
+<img src="files/folk-floor.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Libra">
+<picture>
+<source media="(min-width: 768px)" srcset="files/libra.jpg">
+<source media="(max-width: 767px)" srcset="files/libra.jpg">
+<img src="files/libra.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Libra Floor">
+<picture>
+<source media="(min-width: 768px)" srcset="files/libra-floor.jpg">
+<source media="(max-width: 767px)" srcset="files/libra-floor.jpg">
+<img src="files/libra-floor.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Marmi 1.0">
+<picture>
+<source media="(min-width: 768px)" srcset="files/marmi-1.jpg">
+<source media="(max-width: 767px)" srcset="files/marmi-1.jpg">
+<img src="files/marmi-1.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Marmi 2.0">
+<picture>
+<source media="(min-width: 768px)" srcset="files/marmi-2.jpg">
+<source media="(max-width: 767px)" srcset="files/marmi-2.jpg">
+<img src="files/marmi-2.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Mini">
+<picture>
+<source media="(min-width: 768px)" srcset="files/mini.jpg">
+<source media="(max-width: 767px)" srcset="files/mini.jpg">
+<img src="files/mini.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Norma 2.0">
+<picture>
+<source media="(min-width: 768px)" srcset="files/norma-2.jpg">
+<source media="(max-width: 767px)" srcset="files/norma-2.jpg">
+<img src="files/norma-2.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Smart">
+<picture>
+<source media="(min-width: 768px)" srcset="files/smart.jpg">
+<source media="(max-width: 767px)" srcset="files/smart.jpg">
+<img src="files/smart.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Snob R">
+<picture>
+<source media="(min-width: 768px)" srcset="files/snob-r.jpg">
+<source media="(max-width: 767px)" srcset="files/snob-r.jpg">
+<img src="files/snob-r.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Snob R 1.0">
+<picture>
+<source media="(min-width: 768px)" srcset="files/snob-r-1.jpg">
+<source media="(max-width: 767px)" srcset="files/snob-r-1.jpg">
+<img src="files/snob-r-1.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Snob T">
+<picture>
+<source media="(min-width: 768px)" srcset="files/snob-t.jpg">
+<source media="(max-width: 767px)" srcset="files/snob-t.jpg">
+<img src="files/snob-t.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Stone">
+<picture>
+<source media="(min-width: 768px)" srcset="files/stone.jpg">
+<source media="(max-width: 767px)" srcset="files/stone.jpg">
+<img src="files/stone.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Urban">
+<picture>
+<source media="(min-width: 768px)" srcset="files/urban.jpg">
+<source media="(max-width: 767px)" srcset="files/urban.jpg">
+<img src="files/urban.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Very">
+<picture>
+<source media="(min-width: 768px)" srcset="files/very.jpg">
+<source media="(max-width: 767px)" srcset="files/very.jpg">
+<img src="files/very.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Etna">
+<picture>
+<source media="(min-width: 768px)" srcset="files/etna.jpg">
+<source media="(max-width: 767px)" srcset="files/etna.jpg">
+<img src="files/etna.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Linn">
+<picture>
+<source media="(min-width: 768px)" srcset="files/linn.jpg">
+<source media="(max-width: 767px)" srcset="files/linn.jpg">
+<img src="files/linn.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Nexus">
+<picture>
+<source media="(min-width: 768px)" srcset="files/nexus.jpg">
+<source media="(max-width: 767px)" srcset="files/nexus.jpg">
+<img src="files/nexus.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Studio">
+<picture>
+<source media="(min-width: 768px)" srcset="files/studio.jpg">
+<source media="(max-width: 767px)" srcset="files/studio.jpg">
+<img src="files/studio.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Atom">
+<picture>
+<source media="(min-width: 768px)" srcset="files/atom.jpg">
+<source media="(max-width: 767px)" srcset="files/atom.jpg">
+<img src="files/atom.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Start">
+<picture>
+<source media="(min-width: 768px)" srcset="files/start.jpg">
+<source media="(max-width: 767px)" srcset="files/start.jpg">
+<img src="files/start.jpg" alt="">
+</picture>
+</div>
+</div>    
+</div>
+<div class="section_block block_bottom_image">
+<picture>
+<source media="(min-width: 768px)" srcset="files/bi.jpg">
+<source media="(max-width: 767px)" srcset="files/bi-mob.jpg">
+<img src="files/bi.jpg" alt="">
+</picture>
+<div class="content-padding">
+<div class="inner">
+<div class="title">Каталоги <br>и брошюры</div>
+<div class="text">Каталоги и брошюры по сантехнике и мебели для ванных комнат предоставляют ценную информацию о доступных товарах. Они помогают покупателям выбрать идеальные решения, сочетая стиль и функциональность.</div>
+<a href="" class="btn_button white border_white">
+<span>Перейти в раздел</span>
+<i>
+<svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.5 10.5L5.5 5.5L0.5 0.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+</i>
+</a>
+</div>
+</div>
+</div><footer class="section_block footer">
+<div class="content-padding">
+<div class="footer_inner">
+<div class="footer_main">
+<div class="left">
+<div class="logo">
+<a href="">
+<img src="files/sancos_logo.svg" alt="">
+</a>
+</div>
+<div class="form_footer">
+<div class="title">Подпишитесь на нашу рассылку самых актуальных новостей SANCOS:</div>
+<form action="">
+<div class="field_form">
+<input type="text" placeholder="Введите адрес почты">
+<button class="btn_button grey">Подписаться</button>
+</div>
+</form>
+</div>
+<div class="social_block">
+<a href="">
+<img src="files/vk.svg" alt="">
+</a>
+<a href="">
+<img src="files/tg.svg" alt="">
+</a>
+<a href="">
+<img src="files/rt.svg" alt="">
+</a>
+<a href="">
+<img src="files/pin.svg" alt="">
+</a>
+</div>
+</div>
+<div class="line"></div>
+<div class="menu_footer menu1">
+<div class="title">Информация</div>
+<ul>
+<li><a href="">О компании</a></li>
+<li><a href="">Каталоги и брошюры</a></li>
+<li><a href="">Где купить</a></li>
+<li><a href="">Новости</a></li>
+<li><a href="">Контакты</a></li>
+<li><a href="">Гарантия и сервис</a></li>
+</ul>
+</div>
+<div class="line"></div>
+<div class="menu_footer menu2">
+<div class="title">Продукция</div>
+<ul>
+<li><a href="">Мебель для ванной комнаты</a></li>
+<li><a href="">Зеркала</a></li>
+<li><a href="">Зеркальные шкафы</a></li>
+<li><a href="">Столешницы</a></li>
+<li><a href="">Раковины</a></li>
+<li><a href="">Смесители для ванной</a></li>
+<li><a href="">Смесители для кухни</a></li>
+<li><a href="">Душевые системы</a></li>
+<li><a href="">Комплектующие для душевых систем</a></li>
+<li><a href="">Аксессуары</a></li>
+<li><a href="">Ванны</a></li>
+</ul>
+</div>
+<div class="line"></div>
+<div class="contacts">
+<div class="title">Контакты</div>
+<div class="text">
+<span>Связаться с нами</span>
+</div>
+<div class="text"><a href="tel:+74952150771">+7 (495) 215 07 71</a></div>
+<div class="text">
+<a href="mailto:info@sancos.su">info@sancos.su</a>
+</div>
+<div class="text">
+<a href="">Политика конфиденциальности</a>
+</div>
+<div class="text">
+<a href="">Пользовательское соглашение</a>
+</div>
+</div>
+</div>
+<div class="copy">Все права защищены © SANCOS</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.1.1/remodal.min.js" integrity="sha512-a/KwXZUMuN0N2aqT/nuvYp6mg1zKg8OfvovbIlh4ByLw+BJ4sDrJwQM/iSOd567gx+yS0pQixA4EnxBlHgrL6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/swiper-bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
