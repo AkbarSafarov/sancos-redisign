@@ -594,7 +594,7 @@ img, textarea, input, table {
 }
 
 .section_block {
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     position: sticky !important;
     top: 0;
     left: 0;
@@ -695,14 +695,14 @@ img, textarea, input, table {
     }
 
     .mySwiper_banner {
-        height: 100vh;
+        height: calc(var(--vh) * 100);
     }
 
     .swiper-slide {
         background-repeat: no-repeat;
         background-position: 50%;
         background-size: cover;
-        height: 100vh;
+        height: calc(var(--vh) * 100);
         display: flex;
         align-items: center;
         padding: 100px 0;
@@ -879,7 +879,7 @@ img, textarea, input, table {
 
     .bathroom-slider {
         width: 100%;
-        height: 100vh; 
+        height: calc(var(--vh) * 100); 
         position: relative;
         overflow: hidden;
         background: #1a1a1a;
@@ -902,7 +902,7 @@ img, textarea, input, table {
     .slide-content {
         position: relative;
         width: 100%;
-        height: calc(100vh - 148px); 
+        height: calc((var(--vh) * 100) - 148px); 
         border-radius: 0;
         overflow: hidden;
         transition: all 0.3s ease;
@@ -984,7 +984,7 @@ img, textarea, input, table {
         }
         
         .slide-content {
-            height: calc(100vh - 148px);
+            height: calc((var(--vh) * 100) - 148px);
         }
         
         .swiper-slide {
@@ -1002,7 +1002,7 @@ img, textarea, input, table {
         }
         
         .slide-content {
-            height: calc(100vh - 148px);
+            height: calc((var(--vh) * 100) - 148px);
         }
         
         .swiper-slide {
@@ -1020,7 +1020,7 @@ img, textarea, input, table {
         }
         
         .slide-content {
-            height: 100vh;
+            height: calc(var(--vh) * 100);
         }
         
         .swiper-slide {
@@ -1104,7 +1104,7 @@ img, textarea, input, table {
     }
 
     .mySwiper_list {
-        height: 100vh;
+        height: calc(var(--vh) * 100);
         min-height: 37.5rem; 
         position: relative;
         z-index: 3;
@@ -1112,7 +1112,7 @@ img, textarea, input, table {
 
     .content-padding {
         padding: 5.75rem 0; 
-        height: 100vh;
+        height: calc(var(--vh) * 100);
         min-height: 37.5rem; 
         position: relative;
         z-index: 1;
@@ -1232,7 +1232,7 @@ img, textarea, input, table {
     }
 
     .swiper-slide {
-        height: 100vh;
+        height: calc(var(--vh) * 100);
         min-height: 37.5rem; 
         color: #fff;
         position: relative;
@@ -1289,7 +1289,7 @@ img, textarea, input, table {
         .mySwiper_list,
         .content-padding,
         .swiper-slide {
-            min-height: 100vh;
+            min-height: calc(var(--vh) * 100);
         }
 
         .content-padding {
@@ -1334,7 +1334,7 @@ img, textarea, input, table {
     position: relative;
 
     .content-padding {
-        height: 100vh;
+        height: calc(var(--vh) * 100);
         display: flex;
         align-items: center;
         padding-top: 100px;
@@ -1430,11 +1430,11 @@ img, textarea, input, table {
 
 .footer {
     background: #000;
-    min-height: 100vh;
+    min-height: calc(var(--vh) * 100);
     height: auto;
 
     .content-padding {
-        min-height: 100vh;
+        min-height: calc(var(--vh) * 100);
         display: flex;
         padding-top: 100px;
         padding-bottom: 100px;
@@ -1755,7 +1755,7 @@ img, textarea, input, table {
     top: 0;
     left: 0;
     right: 0;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     background: #fff;
     z-index: 1001;
     opacity: 0;
@@ -1867,7 +1867,7 @@ img, textarea, input, table {
 
     .menu_block {
         margin: 25px 0 55px;
-        height: calc(100vh - 215px);
+        height: calc((var(--vh) * 100) - 215px);
         display: flex;
         overflow-y: auto;
 
