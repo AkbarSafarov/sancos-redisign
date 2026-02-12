@@ -2124,3 +2124,226 @@ img, textarea, input, table {
 .oveflowHidden {
     overflow: hidden;
 }
+
+.swiper-slide {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+
+.remodal_form {
+    max-width: 634px;
+    padding: 80px 40px;
+    border-radius: 4px;
+    text-align: left;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    background: #fff;
+
+    .close {
+        top: 15px;
+        right: 15px;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: none;
+        border: none;
+        outline: none;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    /* Заголовки */
+    h2 {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 131%;
+        color: #6a645d;
+        margin: 0 0 10px;
+    }
+
+    .subtitle {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 129%;
+        color: #6a645d;
+        opacity: 0.5;
+        margin-bottom: 45px;
+    }
+
+    /* Поля формы */
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .email-input {
+        border: 1px solid rgba(188, 195, 208, 0.5);
+        border-radius: 4px;
+        padding: 0 20px;
+        width: 100%;
+        height: 65px;
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 129%;
+        color: #6a645d;
+    }
+
+    .section-label {
+        display: block;
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 129%;
+        color: #6a645d;
+        opacity: .9;
+        margin-bottom: 25px;
+    }
+
+    .checkbox-group, .radio-group {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .checkbox-label, .radio-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 160%;
+        color: #6a645d;
+        position: relative;
+    }
+
+    .checkbox-label input,
+    .radio-label input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Кастомный чекбокс */
+    .checkmark {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #6a645d;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .checkbox-label input:checked ~ .checkmark {
+        background: #6a645d;
+        border-color: #6a645d;
+    }
+
+    .checkbox-label input:checked ~ .checkmark::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: url("data:image/svg+xml,%3Csvg width='16' height='14' viewBox='0 0 16 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.8884 0.19094C15.4212 0.542235 15.5684 1.25896 15.2171 1.79179L8.12012 12.5562C7.4472 13.5769 6.00594 13.7204 5.14491 12.8525L0.335241 8.00471C-0.114258 7.55165 -0.111366 6.81997 0.341701 6.37047C0.794767 5.92097 1.52644 5.92387 1.97594 6.37693L6.4516 10.8881L13.2875 0.519643C13.6388 -0.0131893 14.3555 -0.160354 14.8884 0.19094Z' fill='white' /%3E%3C/svg%3E") 50% no-repeat;
+    }
+
+    .checkbox-label.police {
+        font-size: 15px;
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+        }
+
+        input:checked ~ .checkmark::after {
+            background: url("data:image/svg+xml,%3Csvg width='16' height='14' viewBox='0 0 16 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.8884 0.19094C15.4212 0.542235 15.5684 1.25896 15.2171 1.79179L8.12012 12.5562C7.4472 13.5769 6.00594 13.7204 5.14491 12.8525L0.335241 8.00471C-0.114258 7.55165 -0.111366 6.81997 0.341701 6.37047C0.794767 5.92097 1.52644 5.92387 1.97594 6.37693L6.4516 10.8881L13.2875 0.519643C13.6388 -0.0131893 14.3555 -0.160354 14.8884 0.19094Z' fill='white' /%3E%3C/svg%3E") 50% no-repeat;
+            background-size: 11px;
+        }
+    }
+
+    .radiomark {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #6a645d;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .radio-label input:checked ~ .radiomark {
+        border-color: #6a645d;
+    }
+
+    .radio-label input:checked ~ .radiomark::after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: #6a645d;
+        border-radius: 50%;
+    }
+
+    .submit-btn {
+        width: 100%;
+        border: 1.01px solid #6a645d;
+        border-radius: 4px;
+        padding: 16px 32px;
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 129%;
+        color: #6a645d;
+        cursor: pointer;
+        transition: all 0.3s;
+        background: #fff;
+    }
+
+    .submit-btn:hover {
+        background: #6a645d;
+        color: #fff;
+    }
+
+    .legal-note {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 12px;
+        color: #6a645d;
+        margin-top: 25px;
+        line-height: 1.4;
+    }
+
+    .legal-note a {
+        color: #9a4621;
+        text-decoration: underline;
+    }
+
+    .form-group.consent {
+        border-top: 1px solid #eee;
+        padding-top: 25px;
+        margin-top: 25px;
+    }
+
+    @media all and (max-width: 767px) {
+        max-width: 428px;
+
+        h2 {
+            font-size: 24px;
+        }
+    }
+
+    @media all and (max-width: 470px) {
+        padding: 40px 20px;
+    }
+}

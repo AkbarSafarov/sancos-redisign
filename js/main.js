@@ -169,4 +169,47 @@ document.addEventListener("DOMContentLoaded", function() {
         burgerMenu.classList.remove('opened');
         html.classList.remove('oveflowHidden')
     });
+
+    $('[data-remodal-target="subscribe-popup"]').on('click', function(e) {
+        var email = $('#main-email').val();
+        $('#modal-email').val(email);
+    });
+    
+    // Валидация перед открытием модалки (опционально)
+    $('.field_form .btn_button').on('click', function(e) {
+        var email = $('#main-email').val();
+        if (!email || !isValidEmail(email)) {
+            e.preventDefault();
+            $('#main-email').focus();
+            // Можно добавить подсветку ошибки
+        }
+    });
+    
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    
+    // Обработка отправки формы
+    $('#subscribe-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        var formData = $(this).serialize();
+        
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                // Закрыть модалку и показать успех
+                var inst = $('[data-remodal-id="subscribe-popup"]').remodal();
+                inst.close();
+                
+                // Показать сообщение об успехе
+                alert('Спасибо за подписку!');
+            },
+            error: function() {
+                alert('Произошла ошибка. Попробуйте позже.');
+            }
+        });
+    });
 });
