@@ -6,36 +6,43 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     setVh();
-    window.addEventListener('resize', setVh);
 
 
     const body = document.body;
     const html = document.documentElement;
     const header = document.querySelector('.header');
+    const isMobile = window.innerWidth < 768;
 
     const mainBlockSlider = document.querySelector('.main_block_slider');
     if (mainBlockSlider) {
+        
         const mainSwiper = new Swiper('.mySwiper_banner', {
             spaceBetween: 0,
             loop: true,
-            speed: 500,
+            speed: 600,
+            effect: isMobile ? "fade" : "slide",
+            fadeEffect: {
+                crossFade: true
+            },
             navigation: {
                 nextEl: ".main_block_slider .arrow_btn.next",
                 prevEl: ".main_block_slider .arrow_btn.prev",
             },
             on: {
                 slideChangeTransitionStart: function() {
-                    const activeSlide = this.slides[this.activeIndex];
-                    const direction = this.swipeDirection;
-                    
-                    this.slides.forEach(slide => {
-                        slide.classList.remove('bounceInLeft', 'bounceInRight');
-                    });
-                    
-                    if (direction === 'next' || !direction) {
-                        activeSlide.classList.add('bounceInRight');
-                    } else {
-                        activeSlide.classList.add('bounceInLeft');
+                    if (!isMobile) {
+                        const activeSlide = this.slides[this.activeIndex];
+                        const direction = this.swipeDirection;
+                        
+                        this.slides.forEach(slide => {
+                            slide.classList.remove('bounceInLeft', 'bounceInRight');
+                        });
+                        
+                        if (direction === 'next' || !direction) {
+                            activeSlide.classList.add('bounceInRight');
+                        } else {
+                            activeSlide.classList.add('bounceInLeft');
+                        }
                     }
                 }
             }
@@ -53,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
             spaceBetween: 0,
             loop: true,
             speed: 800,
+            effect: isMobile ? "fade" : "slide",
             navigation: {
                 nextEl: ".block_slider .arrow_btn.next",
                 prevEl: ".block_slider .arrow_btn.prev",
@@ -68,17 +76,19 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             on: {
                 slideChangeTransitionStart: function() {
-                    const activeSlide = this.slides[this.activeIndex];
-                    const direction = this.swipeDirection;
-                    
-                    this.slides.forEach(slide => {
-                        slide.classList.remove('bounceInLeft', 'bounceInRight');
-                    });
-                    
-                    if (direction === 'next' || !direction) {
-                        activeSlide.classList.add('bounceInRight');
-                    } else {
-                        activeSlide.classList.add('bounceInLeft');
+                    if (!isMobile) {
+                        const activeSlide = this.slides[this.activeIndex];
+                        const direction = this.swipeDirection;
+                        
+                        this.slides.forEach(slide => {
+                            slide.classList.remove('bounceInLeft', 'bounceInRight');
+                        });
+                        
+                        if (direction === 'next' || !direction) {
+                            activeSlide.classList.add('bounceInRight');
+                        } else {
+                            activeSlide.classList.add('bounceInLeft');
+                        }
                     }
                 }
             }
