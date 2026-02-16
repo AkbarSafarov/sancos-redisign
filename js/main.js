@@ -1,12 +1,151 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    function isIntersectionObserverSupported() {
+        return ('IntersectionObserver' in window) && 
+               ('IntersectionObserverEntry' in window) && 
+               ('intersectionRatio' in window.IntersectionObserverEntry.prototype);
+    }
+    
+    function loadImage(image) {
+        if (image.dataset.src) {
+            image.src = image.dataset.src;
+            image.removeAttribute('data-src');
+            console.log('Загружено изображение:', image.src);
+        }
+    }
+    
+    function loadAllImagesInContainer(container) {
+        if (!container) return;
+        
+        container.querySelectorAll('img[data-src]').forEach(img => {
+            loadImage(img);
+        });
+
+        container.querySelectorAll('source[data-srcset]').forEach(source => {
+            if (source.dataset.srcset) {
+                source.srcset = source.dataset.srcset;
+                source.removeAttribute('data-srcset');
+            }
+        });
+    }
+    
+    function setupSwiperLazyLoading() {
+        const bathroomSliderElement = document.querySelector('.bathroomSwiper');
+        if (bathroomSliderElement && bathroomSliderElement.swiper) {
+            const swiper = bathroomSliderElement.swiper;
+            
+            swiper.slides.forEach(slide => {
+                loadAllImagesInContainer(slide);
+            });
+            
+            swiper.on('slideChange', function() {
+                const slidesToLoad = [
+                    this.slides[this.activeIndex],
+                    this.slides[this.activeIndex + 1],
+                    this.slides[this.activeIndex - 1]
+                ];
+                
+                slidesToLoad.forEach(slide => {
+                    if (slide) loadAllImagesInContainer(slide);
+                });
+            });
+        }
+        
+        const mainSliderElement = document.querySelector('.mySwiper_banner');
+        if (mainSliderElement && mainSliderElement.swiper) {
+            const swiper = mainSliderElement.swiper;
+            
+            swiper.slides.forEach(slide => {
+                loadAllImagesInContainer(slide);
+            });
+            
+            swiper.on('slideChange', function() {
+                loadAllImagesInContainer(this.slides[this.activeIndex]);
+            });
+        }
+        
+        const listSliderElement = document.querySelector('.mySwiper_list');
+        if (listSliderElement && listSliderElement.swiper) {
+            const swiper = listSliderElement.swiper;
+            
+            swiper.slides.forEach(slide => {
+                loadAllImagesInContainer(slide);
+            });
+            
+            swiper.on('slideChange', function() {
+                loadAllImagesInContainer(this.slides[this.activeIndex]);
+            });
+        }
+    }
+    
+    function setupStaticLazyLoading() {
+        const lazyImages = document.querySelectorAll('img[data-src]:not(.swiper-slide img), source[data-srcset]:not(.swiper-slide source)');
+        
+        if (lazyImages.length > 0) {
+            if (isIntersectionObserverSupported()) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const element = entry.target;
+                            
+                            if (element.tagName === 'IMG') {
+                                loadImage(element);
+                            } else if (element.tagName === 'SOURCE') {
+                                const picture = element.parentElement;
+                                if (picture && picture.tagName === 'PICTURE') {
+                                    const img = picture.querySelector('img');
+                                    if (img && img.dataset.src) {
+                                        loadImage(img);
+                                    }
+                                }
+                            }
+                            
+                            observer.unobserve(element);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+                
+                lazyImages.forEach(image => imageObserver.observe(image));
+            } else {
+                let lazyLoadTimeout;
+                
+                function lazyLoadHandler() {
+                    if (lazyLoadTimeout) clearTimeout(lazyLoadTimeout);
+                    
+                    lazyLoadTimeout = setTimeout(() => {
+                        const windowHeight = window.innerHeight;
+                        
+                        lazyImages.forEach(image => {
+                            if (image.tagName === 'IMG' && image.dataset.src) {
+                                const rect = image.getBoundingClientRect();
+                                if (rect.top < windowHeight + 100 && rect.bottom > -100) {
+                                    loadImage(image);
+                                }
+                            }
+                        });
+                    }, 100);
+                }
+                
+                window.addEventListener('scroll', lazyLoadHandler);
+                window.addEventListener('resize', lazyLoadHandler);
+                lazyLoadHandler();
+            }
+        }
+    }
+    
+    setTimeout(setupSwiperLazyLoading, 1000);
+    
+    setTimeout(setupStaticLazyLoading, 500);
+
     function setVh() {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
     setVh();
-
 
     const body = document.body;
     const html = document.documentElement;
@@ -19,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const mainSwiper = new Swiper('.mySwiper_banner', {
             spaceBetween: 0,
             loop: true,
+            lazy: true,
             speed: 600,
             effect: isMobile ? "fade" : "slide",
             fadeEffect: {
@@ -59,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
             slidesPerView: 'auto',
             spaceBetween: 0,
             loop: true,
+            lazy: true,
             speed: 800,
             effect: isMobile ? "fade" : "slide",
             navigation: {
@@ -100,6 +241,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const listSwiper = new Swiper('.mySwiper_list', {
             spaceBetween: 0,
             loop: true,
+            lazy: true,
             speed: 500,
             navigation: {
                 nextEl: ".block_slider_list .arrow_btn.next",
@@ -194,13 +336,11 @@ document.addEventListener("DOMContentLoaded", function() {
         $('#modal-email').val(email);
     });
     
-    // Валидация перед открытием модалки (опционально)
     $('.field_form .btn_button').on('click', function(e) {
         var email = $('#main-email').val();
         if (!email || !isValidEmail(email)) {
             e.preventDefault();
             $('#main-email').focus();
-            // Можно добавить подсветку ошибки
         }
     });
     
@@ -208,7 +348,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
     
-    // Обработка отправки формы
     $('#subscribe-form').on('submit', function(e) {
         e.preventDefault();
         
@@ -219,11 +358,9 @@ document.addEventListener("DOMContentLoaded", function() {
             type: 'POST',
             data: formData,
             success: function(response) {
-                // Закрыть модалку и показать успех
                 var inst = $('[data-remodal-id="subscribe-popup"]').remodal();
                 inst.close();
                 
-                // Показать сообщение об успехе
                 alert('Спасибо за подписку!');
             },
             error: function() {
@@ -231,6 +368,4 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
-
-
 });

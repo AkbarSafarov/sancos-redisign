@@ -1551,10 +1551,22 @@ img, textarea, input, table {
                 align-items: start;
                 gap: 14px;
 
+                @media all and (max-width: 767px){
+                    gap: 20px;
+                }
+
                 a {
                     text-decoration: none;
                     flex: 0 0 29px;
                     font-size: 0;
+
+                    img {
+                        width: 100%;
+                    }
+
+                    @media all and (max-width: 767px) {
+                        flex: 0 0 56px;
+                    }
                 }
             }
         }
@@ -2359,4 +2371,31 @@ img, textarea, input, table {
 
 .fadeIn {
     animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Стили для отложенной загрузки */
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    min-height: 20px; 
+    background: #f0f0f0; 
+}
+
+img:not([data-src]) {
+    opacity: 1;
+}
+
+.swiper-slide img[data-src] {
+    opacity: 0;
+}
+
+.swiper-slide img:not([data-src]) {
+    opacity: 1;
+}
+.block_slider_list .images .image img[data-src] {
+    opacity: 0;
+}
+
+.block_slider_list .images .image img:not([data-src]) {
+    opacity: 1;
 }
