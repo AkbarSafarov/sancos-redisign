@@ -5,139 +5,149 @@ document.addEventListener("DOMContentLoaded", function() {
                ('IntersectionObserverEntry' in window) && 
                ('intersectionRatio' in window.IntersectionObserverEntry.prototype);
     }
-    
+
     function loadImage(image) {
         if (image.dataset.src) {
             image.src = image.dataset.src;
             image.removeAttribute('data-src');
-            console.log('Загружено изображение:', image.src);
         }
     }
-    
-    function loadAllImagesInContainer(container) {
-        if (!container) return;
-        
-        container.querySelectorAll('img[data-src]').forEach(img => {
-            loadImage(img);
+
+    function loadPicture(picture) {
+        const sources = picture.querySelectorAll('source[data-srcset]');
+        const img = picture.querySelector('img');
+        if (!img) return;
+
+        let selectedSrc = null;
+
+        sources.forEach(source => {
+            const media = source.getAttribute('media');
+            const srcset = source.dataset.srcset;
+            if (srcset && media && window.matchMedia(media).matches) {
+                selectedSrc = srcset;
+            }
+            source.srcset = srcset;
+            source.removeAttribute('data-srcset');
         });
 
-        container.querySelectorAll('source[data-srcset]').forEach(source => {
-            if (source.dataset.srcset) {
-                source.srcset = source.dataset.srcset;
-                source.removeAttribute('data-srcset');
-            }
+        if (selectedSrc) {
+            img.src = selectedSrc;
+        } else if (img.dataset.src) {
+            img.src = img.dataset.src;
+        }
+        img.removeAttribute('data-src');
+    }
+
+    function loadAllImagesInContainer(container) {
+        if (!container) return;
+
+        container.querySelectorAll('picture').forEach(picture => {
+            loadPicture(picture);
+        });
+
+        container.querySelectorAll('img[data-src]:not(picture img)').forEach(img => {
+            loadImage(img);
         });
     }
-    
+
     function setupSwiperLazyLoading() {
         const bathroomSliderElement = document.querySelector('.bathroomSwiper');
         if (bathroomSliderElement && bathroomSliderElement.swiper) {
             const swiper = bathroomSliderElement.swiper;
-            
+
             swiper.slides.forEach(slide => {
                 loadAllImagesInContainer(slide);
             });
-            
+
             swiper.on('slideChange', function() {
                 const slidesToLoad = [
                     this.slides[this.activeIndex],
                     this.slides[this.activeIndex + 1],
                     this.slides[this.activeIndex - 1]
                 ];
-                
                 slidesToLoad.forEach(slide => {
                     if (slide) loadAllImagesInContainer(slide);
                 });
             });
         }
-        
+
         const mainSliderElement = document.querySelector('.mySwiper_banner');
         if (mainSliderElement && mainSliderElement.swiper) {
             const swiper = mainSliderElement.swiper;
-            
+
             swiper.slides.forEach(slide => {
                 loadAllImagesInContainer(slide);
             });
-            
+
             swiper.on('slideChange', function() {
                 loadAllImagesInContainer(this.slides[this.activeIndex]);
             });
         }
-        
+
         const listSliderElement = document.querySelector('.mySwiper_list');
         if (listSliderElement && listSliderElement.swiper) {
             const swiper = listSliderElement.swiper;
-            
+
             swiper.slides.forEach(slide => {
                 loadAllImagesInContainer(slide);
             });
-            
+
             swiper.on('slideChange', function() {
                 loadAllImagesInContainer(this.slides[this.activeIndex]);
             });
         }
     }
-    
+
     function setupStaticLazyLoading() {
-        const lazyImages = document.querySelectorAll('img[data-src]:not(.swiper-slide img), source[data-srcset]:not(.swiper-slide source)');
-        
-        if (lazyImages.length > 0) {
-            if (isIntersectionObserverSupported()) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const element = entry.target;
-                            
-                            if (element.tagName === 'IMG') {
-                                loadImage(element);
-                            } else if (element.tagName === 'SOURCE') {
-                                const picture = element.parentElement;
-                                if (picture && picture.tagName === 'PICTURE') {
-                                    const img = picture.querySelector('img');
-                                    if (img && img.dataset.src) {
-                                        loadImage(img);
-                                    }
-                                }
-                            }
-                            
-                            observer.unobserve(element);
+        const lazyPictures = document.querySelectorAll('picture:has(source[data-srcset])');
+        const lazyImages = document.querySelectorAll('img[data-src]:not(picture img)');
+
+        const allLazy = [...lazyPictures, ...lazyImages];
+
+        if (allLazy.length === 0) return;
+
+        if (isIntersectionObserverSupported()) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+
+                    const el = entry.target;
+                    if (el.tagName === 'PICTURE') {
+                        loadPicture(el);
+                    } else if (el.tagName === 'IMG') {
+                        loadImage(el);
+                    }
+
+                    obs.unobserve(el);
+                });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.01
+            });
+
+            allLazy.forEach(el => observer.observe(el));
+        } else {
+            let timeout;
+            function handler() {
+                if (timeout) clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    const wh = window.innerHeight;
+                    allLazy.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < wh + 100 && rect.bottom > -100) {
+                            if (el.tagName === 'PICTURE') loadPicture(el);
+                            else if (el.tagName === 'IMG') loadImage(el);
                         }
                     });
-                }, {
-                    rootMargin: '50px 0px',
-                    threshold: 0.01
-                });
-                
-                lazyImages.forEach(image => imageObserver.observe(image));
-            } else {
-                let lazyLoadTimeout;
-                
-                function lazyLoadHandler() {
-                    if (lazyLoadTimeout) clearTimeout(lazyLoadTimeout);
-                    
-                    lazyLoadTimeout = setTimeout(() => {
-                        const windowHeight = window.innerHeight;
-                        
-                        lazyImages.forEach(image => {
-                            if (image.tagName === 'IMG' && image.dataset.src) {
-                                const rect = image.getBoundingClientRect();
-                                if (rect.top < windowHeight + 100 && rect.bottom > -100) {
-                                    loadImage(image);
-                                }
-                            }
-                        });
-                    }, 100);
-                }
-                
-                window.addEventListener('scroll', lazyLoadHandler);
-                window.addEventListener('resize', lazyLoadHandler);
-                lazyLoadHandler();
+                }, 100);
             }
+            window.addEventListener('scroll', handler);
+            window.addEventListener('resize', handler);
+            handler();
         }
     }
-    
+
     setTimeout(setupSwiperLazyLoading, 1000);
-    
     setTimeout(setupStaticLazyLoading, 500);
 
     function setVh() {
@@ -193,7 +203,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (bathroomSlider) {
         const bathroomSwiper = new Swiper('.bathroomSwiper', {
-            
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: 'auto',
@@ -248,6 +257,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 prevEl: ".block_slider_list .arrow_btn.prev",
             },
             effect: "fade",
+            simulateTouch: !isMobile,
+            allowTouchMove: !isMobile, 
             slidesPerView: 1,
             loopedSlides: 1,
         });
@@ -294,6 +305,33 @@ document.addEventListener("DOMContentLoaded", function() {
         searchBtn.addEventListener('click', function(){
             searchWrap.classList.toggle('opened');
         })
+    }
+
+    const searchBtnMobile = document.querySelector('.search_btn_mobile');
+
+    if(searchBtnMobile){
+        searchWrapMobile = document.querySelector('.search_form');
+
+        searchBtnMobile.addEventListener('click', function(){
+            searchWrapMobile.classList.toggle('active');
+        })
+    }
+
+    const categoryMobileBtn = document.querySelector('.category_mobile');
+
+    if(categoryMobileBtn){
+        const menuBlockMobile = document.querySelector('.menu_block');
+        const menuBlockBack = document.querySelector('.back_btn');
+
+        categoryMobileBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            menuBlockMobile.classList.add('active_categor');
+        });
+
+        menuBlockBack.addEventListener('click', function(event){
+            event.preventDefault();
+            menuBlockMobile.classList.remove('active_categor');
+        });
     }
 
     const menuList = document.querySelectorAll('.right_menu ul li a .arrow');

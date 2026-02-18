@@ -475,7 +475,7 @@ img, textarea, input, table {
             flex: 0 0 84px;
             text-align: center;
 
-            a {
+            a,span {
                 display: inline-block;
                 vertical-align: top;
                 text-decoration: none;
@@ -589,6 +589,21 @@ img, textarea, input, table {
             border: none;
             outline: none;
             cursor: pointer;
+        }
+    }
+
+    @media all and (max-width: 767px) {
+        padding-top: 130px;
+
+        form {
+
+            .btn {
+                opacity: 0;
+                width: 50px;
+                font-size: 0;
+                right: auto;
+                left: 0;
+            }
         }
     }
 }
@@ -1118,14 +1133,14 @@ img, textarea, input, table {
         z-index: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: start;
 
         @media all and (max-width: 1024px) {
-            padding: 4rem 1rem; 
+            padding: 6rem 1rem; 
         }
 
         @media all and (max-width: 767px) {
-            padding: 3rem 1rem 5rem; 
+            padding: 6rem 1rem; 
         }
     }
 
@@ -1293,7 +1308,7 @@ img, textarea, input, table {
         }
 
         .content-padding {
-            padding: 2rem 1rem;
+            padding:5rem 1rem;
         }
 
         .btn_title {
@@ -1465,7 +1480,7 @@ img, textarea, input, table {
 
             .logo {
                 margin-bottom: 79px;
-                a {
+                a,span {
                     display: inline-block;
                     vertical-align: top;
                     text-decoration: none;
@@ -1783,6 +1798,13 @@ img, textarea, input, table {
 
     @media all and (max-width: 1010px){
         overflow-y: auto;
+        display: flex;
+
+        .content-padding {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
     }
 
     .burger_top {
@@ -1798,6 +1820,7 @@ img, textarea, input, table {
             width: 25px;
             height: 25px;
             cursor: pointer;
+            margin-right: 45px;
         }
 
         .login_btn {
@@ -1814,8 +1837,27 @@ img, textarea, input, table {
             }
         }
 
+        .search_btn_mobile {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: url("data:image/svg+xml,%3Csvg width='23' height='23' viewBox='0 0 23 23' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22.5073 22.5073L17.3113 17.302M20.1908 10.3454C20.1908 12.9565 19.1535 15.4608 17.3071 17.3071C15.4608 19.1535 12.9565 20.1908 10.3454 20.1908C7.73422 20.1908 5.23001 19.1535 3.38365 17.3071C1.53728 15.4608 0.5 12.9565 0.5 10.3454C0.5 7.73422 1.53728 5.23001 3.38365 3.38365C5.23001 1.53728 7.73422 0.5 10.3454 0.5C12.9565 0.5 15.4608 1.53728 17.3071 3.38365C19.1535 5.23001 20.1908 7.73422 20.1908 10.3454V10.3454Z' stroke='%236A645D' stroke-linecap='round' /%3E%3C/svg%3E") 50% no-repeat;
+
+            &:hover{
+                opacity: .8;
+            }
+        }
+
+        .act {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         .logo {
-            a {
+            a,span {
                 text-decoration: none;
                 display: inline-block;
             }
@@ -1828,6 +1870,21 @@ img, textarea, input, table {
 
     .search_form {
         position: relative;
+        height: 0;
+        overflow: hidden;
+        transition: all .3s;
+        opacity: 0;
+
+        &.active {
+            opacity: 1;
+            height: 40px;
+            flex: 0 0 40px; 
+
+            @media all and (max-width: 767px) {
+                height: 56px;
+                flex: 0 0 56px;
+            }
+        }
 
         input {
             width: 100%;
@@ -1870,8 +1927,11 @@ img, textarea, input, table {
             @media all and (max-width: 767px) {
                 background: #6a645d;
                 color: #fff;
-                width: 90px;
-                font-size: 20px;
+                width: 50px;
+                font-size: 0;
+                opacity: 0;
+                right: auto;
+                left: 0;
                 border-radius: 3px;
             }
         }
@@ -1887,6 +1947,8 @@ img, textarea, input, table {
             flex-direction: column;
             height: 100%;
             overflow: unset;
+            margin-bottom: 0;
+            flex: 1 1 auto;
         }
 
         .left_menu {
@@ -1915,6 +1977,7 @@ img, textarea, input, table {
 
                         > ul {
                             display: block;
+                            padding-left: 0;
 
                             > li {
                                 > a {
@@ -1952,7 +2015,7 @@ img, textarea, input, table {
             }
 
             @media all and (max-width: 1010px) {
-                display: block;
+                display: none;
                 padding: 0;
 
                 .col {
@@ -2044,6 +2107,7 @@ img, textarea, input, table {
                         margin: auto;
                         width: 25px;
                         height: 25px;
+                        transition: all .3s;
                     }
 
                     @media all and (max-width: 1010px) {
@@ -2063,6 +2127,13 @@ img, textarea, input, table {
                     text-decoration: none;
                 }
 
+                &.hasSubmenu{
+                    > a {
+                        .arrow {
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
 
                 > ul {
                     margin: 0;
@@ -2089,6 +2160,7 @@ img, textarea, input, table {
                             display: inline-flex;
                             align-items: center;
                             gap: 5px;
+                            position: relative;
 
                             span {
 
@@ -2127,6 +2199,45 @@ img, textarea, input, table {
                             }
                         }
                     }
+                }
+            }
+        }
+
+        .back_wr {
+            display: none;
+            text-align: center;
+
+            .back_btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 15px;
+                font-family: var(--font-family);
+                font-weight: 400;
+                font-size: 21px;
+                color: #6a645d;
+                cursor: pointer;
+            }
+        }
+
+        @media all and (max-width: 1010px) {
+            .category_mobile {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                cursor: pointer;
+            }
+
+            &.active_categor {
+                .left_menu,
+                .contacts {
+                    display: none;
+                }
+
+                .right_menu,
+                .back_wr {
+                    display: block;
                 }
             }
         }

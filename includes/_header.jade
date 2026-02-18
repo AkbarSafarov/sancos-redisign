@@ -20,11 +20,15 @@
                 <div class="burger_top">
                     <div class="close"></div>
                     <div class="logo">
-                        <a href="">
+                        <!-- <a href="">
                             <img src="files/b_logo.svg" alt="">
-                        </a>
+                        </a> -->
+                        <span><img src="files/b_logo.svg" alt=""></span>
                     </div>
-                    <a href="" class="login_btn"></a>
+                    <div class="act">
+                        <button class="search_btn_mobile"></button>
+                        <a href="" class="login_btn"></a>
+                    </div>
                 </div>
                 <form action="" class="search_form">
                     <input type="text">
@@ -37,7 +41,7 @@
                                 <span>Продукция</span>
                                 <ul>
                                     <li><a href="">По коллекциям</a></li>
-                                    <li><a href="">По категориям</a></li>
+                                    <li><a href="">По категориям <span class="category_mobile"></span></a></li>
                                     <li><a href="">Где купить</a></li>
                                     <li><a href="">Каталоги и брошюры</a></li>
                                 </ul>
@@ -66,10 +70,18 @@
                             <a href="mailto:info@sancos.su">info@sancos.su</a>
                         </div>
                     </div>
+                    <div class="back_wr">
+                        <div class="back_btn">
+                            <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.68752 15.8463L0.6875 8.26761L8.68751 0.688964" stroke="#6A645D" stroke-width="1.37794" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Назад</span>
+                        </div>
+                    </div>
                     <div class="right_menu">
                         <div class="col">
                             <ul class="menu_list">
-                                <li>
+                                <li class="hasSubmenu">
                                     <a href="">
                                         <span>Мебель для ванной комнаты</span>
                                         <span class="arrow"></span>
@@ -180,9 +192,10 @@
             <div class="content-padding">
                 <div class="burger"></div>
                 <div class="logo">
-                    <a href="">
+                    <!-- <a href="">
                         <img src="files/logo.svg" alt="">
-                    </a>
+                    </a> -->
+                    <span><img src="files/logo.svg" alt=""></span>
                 </div>
                 <div class="right">
                     <button class="search_btn"></button>

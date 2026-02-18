@@ -17,11 +17,15 @@
 <div class="burger_top">
 <div class="close"></div>
 <div class="logo">
-<a href="">
+<!-- <a href="">
 <img src="files/b_logo.svg" alt="">
-</a>
+</a> -->
+<span><img src="files/b_logo.svg" alt=""></span>
 </div>
+<div class="act">
+<button class="search_btn_mobile"></button>
 <a href="" class="login_btn"></a>
+</div>
 </div>
 <form action="" class="search_form">
 <input type="text">
@@ -34,7 +38,7 @@
 <span>Продукция</span>
 <ul>
 <li><a href="">По коллекциям</a></li>
-<li><a href="">По категориям</a></li>
+<li><a href="">По категориям <span class="category_mobile"></span></a></li>
 <li><a href="">Где купить</a></li>
 <li><a href="">Каталоги и брошюры</a></li>
 </ul>
@@ -63,10 +67,18 @@
 <a href="mailto:info@sancos.su">info@sancos.su</a>
 </div>
 </div>
+<div class="back_wr">
+<div class="back_btn">
+<svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.68752 15.8463L0.6875 8.26761L8.68751 0.688964" stroke="#6A645D" stroke-width="1.37794" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+<span>Назад</span>
+</div>
+</div>
 <div class="right_menu">
 <div class="col">
 <ul class="menu_list">
-<li>
+<li class="hasSubmenu">
 <a href="">
 <span>Мебель для ванной комнаты</span>
 <span class="arrow"></span>
@@ -177,9 +189,10 @@
 <div class="content-padding">
 <div class="burger"></div>
 <div class="logo">
-<a href="">
+<!-- <a href="">
 <img src="files/logo.svg" alt="">
-</a>
+</a> -->
+<span><img src="files/logo.svg" alt=""></span>
 </div>
 <div class="right">
 <button class="search_btn"></button>
@@ -563,11 +576,18 @@
 </div>
 </div>
 <div class="images">
-<div class="image" data-name="Cento">
+<div class="image" data-name="">
 <picture>
 <source media="(min-width: 768px)" data-srcset="files/general-1.jpg">
 <source media="(max-width: 767px)" data-srcset="files/mobile/general-1.jpg">
 <img data-src="files/general-1.jpg" alt="">
+</picture>
+</div>
+<div class="image" data-name="Cento">
+<picture>
+<source media="(min-width: 768px)" data-srcset="files/cento.jpg">
+<source media="(max-width: 767px)" data-srcset="files/mobile/cento.jpg">
+<img data-src="files/cento.jpg" alt="">
 </picture>
 </div>
 <div class="image" data-name="Code">
@@ -743,7 +763,7 @@
 <div class="inner">
 <div class="title">Каталоги <br>и брошюры</div>
 <div class="text">Каталоги и брошюры по сантехнике и мебели для ванных комнат предоставляют ценную информацию о доступных товарах. Они помогают покупателям выбрать идеальные решения, сочетая стиль и функциональность.</div>
-<a href="" class="btn_button white border_white">
+<a href="/download" class="btn_button white border_white">
 <span>Перейти в раздел</span>
 <i>
 <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -759,9 +779,10 @@
 <div class="footer_main">
 <div class="left">
 <div class="logo">
-<a href="">
+<!-- <a href="">
 <img src="files/sancos_logo.svg" alt="">
-</a>
+</a> -->
+<span><img src="files/sancos_logo.svg" alt=""></span>
 </div>
 <div class="form_footer">
 <div class="title">Подпишитесь на нашу рассылку самых актуальных новостей SANCOS:</div>
@@ -819,22 +840,19 @@
 <div class="line"></div>
 <div class="contacts">
 <div class="title">Контакты</div>
-<div class="text">
-<span>Связаться с нами</span>
-</div>
 <div class="text"><a href="tel:+74952150771">+7 (495) 215 07 71</a></div>
 <div class="text">
 <a href="mailto:info@sancos.su">info@sancos.su</a>
 </div>
 <div class="text">
-<a href="">Политика конфиденциальности</a>
+<a href="/policy/">Политика конфиденциальности</a>
 </div>
 <div class="text">
-<a href="">Пользовательское соглашение</a>
+<a href="/sogl/">Пользовательское соглашение</a>
 </div>
 </div>
 </div>
-<div class="copy">Все права защищены © SANCOS</div>
+<div class="copy">2026 | Все права защищены © SANCOS</div>
 </div>
 </div>
 </footer>
