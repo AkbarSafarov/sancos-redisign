@@ -2025,6 +2025,11 @@ img, textarea, input, table {
                 }
 
                 .menu_list > li {
+                    > a {
+                        .arrow {
+                            transform: rotate(90deg);
+                        }
+                    }
                     &.hasSubmenu {
                         ul {
                             display: block;
@@ -2113,6 +2118,8 @@ img, textarea, input, table {
                     @media all and (max-width: 1010px) {
                         display: block;
                         font-size: 21px;
+
+                        
                     }
                 }
 
@@ -2130,7 +2137,7 @@ img, textarea, input, table {
                 &.hasSubmenu{
                     > a {
                         .arrow {
-                            transform: rotate(90deg);
+                            transform: rotate(-90deg);
                         }
                     }
                 }
