@@ -406,4 +406,69 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    function initStackingSections() {
+    const sections = Array.from(document.querySelectorAll('.section_block'));
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    // Расставляем z-index — каждая следующая выше
+    sections.forEach((section, i) => {
+        section.style.zIndex = i + 1;
+        if (i === 0) {
+            section.style.transform = 'translateY(0)';
+        } else {
+            section.style.transform = 'translateY(100%)';
+        }
+        section.style.transition = 'transform 0.7s cubic-bezier(0.77, 0, 0.18, 1)';
+    });
+
+    function goToNext() {
+        if (isAnimating || currentIndex >= sections.length - 1) return;
+        isAnimating = true;
+
+        const next = sections[currentIndex + 1];
+        // Следующая секция едет сверху вниз — она уже имеет высокий z-index
+        next.style.transform = 'translateY(0)';
+
+        currentIndex++;
+        setTimeout(() => { isAnimating = false; }, 700);
+    }
+
+    function goToPrev() {
+        if (isAnimating || currentIndex <= 0) return;
+        isAnimating = true;
+
+        const current = sections[currentIndex];
+        // Текущая секция уезжает вниз — открывается предыдущая
+        current.style.transform = 'translateY(100%)';
+
+        currentIndex--;
+        setTimeout(() => { isAnimating = false; }, 700);
+    }
+
+    // Скролл колёсиком
+    window.addEventListener('wheel', (e) => {
+        if (e.deltaY > 0) goToNext();
+        else goToPrev();
+    }, { passive: true });
+
+    // Свайп на тач-устройствах
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+        const delta = touchStartY - e.changedTouches[0].clientY;
+        if (Math.abs(delta) > 50) {
+            if (delta > 0) goToNext();
+            else goToPrev();
+        }
+    }, { passive: true });
+}
+
+initStackingSections();
+
+    
 });
