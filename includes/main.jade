@@ -9,6 +9,17 @@ include _header.jade
                 </div>
             </div>
             <div class="swiper-wrapper">
+                <div class="swiper-slide" data-video-type="html">
+                    <video class="slide-video" muted playsinline preload="none" data-src="files/frontend.mp4">
+                        <source src="files/frontend.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="swiper-slide" data-video-type="youtube" data-video-id="pFotKbjdAzQ">
+                    <div class="slide-video-embed" id="yt-player-pFotKbjdAzQ"></div>
+                </div>
+                <div class="swiper-slide" data-video-type="rutube" data-video-id="db60a196e52a7d23233ad4bade0f42c6">
+                    <iframe id="rt-player-db60a196e52a7d23233ad4bade0f42c6"                         class="slide-video-embed"                         src="https://rutube.ru/play/embed/db60a196e52a7d23233ad4bade0f42c6?autoplay=0&mute=1&loop=1"                         frameborder="0"                         allow="autoplay; fullscreen, mute"                         allowfullscreen>                     </iframe>
+                </div>
                 <div class="swiper-slide">
                     <picture>
                         <source media="(min-width: 768px)" data-srcset="files/slider_ban_top.jpg">
@@ -282,9 +293,9 @@ include _header.jade
                 <div class="swiper-slide">
                     <div class="content-padding">
                         <div class="btn_title">
-                            <a href="" class="btn_button white border_white">
+                            <div class="btn_button white border_white">
                                 <span>Мебель для ванной</span>
-                            </a>
+                            </div>
                         </div>
                         <div class="inner">
                             <div class="list">
@@ -315,9 +326,9 @@ include _header.jade
                 <div class="swiper-slide">
                     <div class="content-padding">
                         <div class="btn_title">
-                            <a href="" class="btn_button white border_white">
+                            <div class="btn_button white border_white">
                                 <span>Мебель для ванной</span>
-                            </a>
+                            </div>
                         </div>
                         <div class="inner">
                             <div class="list">
@@ -334,9 +345,9 @@ include _header.jade
                 <div class="swiper-slide">
                     <div class="content-padding">
                         <div class="btn_title">
-                            <a href="" class="btn_button white border_white">
+                            <div class="btn_button white border_white">
                                 <span>Мебель для ванной</span>
-                            </a>
+                            </div>
                         </div>
                         <div class="inner">
                             <div class="list">

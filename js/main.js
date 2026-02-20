@@ -162,38 +162,200 @@ document.addEventListener("DOMContentLoaded", function() {
     const header = document.querySelector('.header');
     const isMobile = window.innerWidth < 768;
 
+    // const mainBlockSlider = document.querySelector('.main_block_slider');
+    // if (mainBlockSlider) {
+        
+    //     const mainSwiper = new Swiper('.mySwiper_banner', {
+    //         spaceBetween: 0,
+    //         loop: true,
+    //         lazy: true,
+    //         speed: 600,
+    //         effect: isMobile ? "fade" : "slide",
+    //         fadeEffect: {
+    //             crossFade: true
+    //         },
+    //         navigation: {
+    //             nextEl: ".main_block_slider .arrow_btn.next",
+    //             prevEl: ".main_block_slider .arrow_btn.prev",
+    //         },
+    //         on: {
+    //             slideChangeTransitionStart: function() {
+    //                 if (!isMobile) {
+    //                     const activeSlide = this.slides[this.activeIndex];
+    //                     const direction = this.swipeDirection;
+                        
+    //                     this.slides.forEach(slide => {
+    //                         slide.classList.remove('bounceInLeft', 'bounceInRight');
+    //                     });
+                        
+    //                     if (direction === 'next' || !direction) {
+    //                         activeSlide.classList.add('bounceInRight');
+    //                     } else {
+    //                         activeSlide.classList.add('bounceInLeft');
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
+
+    let ytAPIReady = false;
+    const ytPlayers = {};
+    const ytPendingSlides = [];
+
+    function loadYouTubeAPI() {
+        if (document.getElementById('yt-api-script')) return;
+        const tag = document.createElement('script');
+        tag.id = 'yt-api-script';
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+    }
+
+    window.onYouTubeIframeAPIReady = function () {
+        ytAPIReady = true;
+        ytPendingSlides.forEach(({ slideEl, videoId }) => initYTPlayer(slideEl, videoId));
+        ytPendingSlides.length = 0;
+    };
+
+    function initYTPlayer(slideEl, videoId) {
+        const containerId = `yt-player-${videoId}`;
+        if (ytPlayers[containerId]) return;
+        ytPlayers[containerId] = new YT.Player(containerId, {
+            videoId,
+            playerVars: {
+                autoplay: 0,
+                mute: 1,
+                controls: 0,
+                disablekb: 1,
+                loop: 1,
+                playlist: videoId,
+                modestbranding: 0,
+                showinfo: 1,
+                rel: 1,
+                fs: 1,
+                iv_load_policy: 3,
+                playsinline: 0
+            },
+            events: {
+                onReady(e) {
+                    slideEl._ytPlayer = e.target;
+                    if (slideEl.classList.contains('swiper-slide-active')) {
+                        e.target.playVideo();
+                    }
+                }
+            }
+        });
+    }
+
+    // --- Rutube postMessage ---
+    function postMessageToIframe(iframe, type, data = {}) {
+        if (!iframe) return;
+        iframe.contentWindow.postMessage(JSON.stringify({ type, data }), '*');
+    }
+
+    // --- Play / Pause ---
+    function playSlideVideo(slide) {
+        const type = slide.dataset.videoType;
+        if (!type) return;
+
+        if (type === 'html') {
+            const video = slide.querySelector('video.slide-video');
+            if (video) {
+                if (video.dataset.src && !video.getAttribute('src')) {
+                    video.setAttribute('src', video.dataset.src);
+                    video.load();
+                }
+                video.play().catch(() => {});
+            }
+
+        } else if (type === 'youtube') {
+            if (slide._ytPlayer) {
+                slide._ytPlayer.playVideo();
+            }
+
+        } else if (type === 'rutube') {
+            const iframe = document.getElementById(`rt-player-${slide.dataset.videoId}`);
+            postMessageToIframe(iframe, 'player:play', {});
+        }
+    }
+
+    function pauseSlideVideo(slide) {
+        const type = slide.dataset.videoType;
+        if (!type) return;
+
+        if (type === 'html') {
+            const video = slide.querySelector('video.slide-video');
+            if (video) video.pause();
+
+        } else if (type === 'youtube') {
+            if (slide._ytPlayer) slide._ytPlayer.pauseVideo();
+
+        } else if (type === 'rutube') {
+            const iframe = document.getElementById(`rt-player-${slide.dataset.videoId}`);
+            postMessageToIframe(iframe, 'player:pause', {});
+        }
+    }
+
+    // --- Инициализация ---
+    function initSlideVideos(swiper) {
+        let needYT = false;
+
+        swiper.slides.forEach(slide => {
+            const type = slide.dataset.videoType;
+            if (!type) return;
+
+            if (type === 'youtube') {
+                needYT = true;
+                const videoId = slide.dataset.videoId;
+                if (ytAPIReady) {
+                    initYTPlayer(slide, videoId);
+                } else {
+                    ytPendingSlides.push({ slideEl: slide, videoId });
+                }
+            }
+        });
+
+        if (needYT) loadYouTubeAPI();
+    }
+
+
     const mainBlockSlider = document.querySelector('.main_block_slider');
     if (mainBlockSlider) {
-        
+
         const mainSwiper = new Swiper('.mySwiper_banner', {
             spaceBetween: 0,
             loop: true,
             lazy: true,
             speed: 600,
-            effect: isMobile ? "fade" : "slide",
-            fadeEffect: {
-                crossFade: true
-            },
+            effect: isMobile ? 'fade' : 'slide',
+            fadeEffect: { crossFade: true },
             navigation: {
-                nextEl: ".main_block_slider .arrow_btn.next",
-                prevEl: ".main_block_slider .arrow_btn.prev",
+                nextEl: '.main_block_slider .arrow_btn.next',
+                prevEl: '.main_block_slider .arrow_btn.prev',
             },
             on: {
-                slideChangeTransitionStart: function() {
+                init(swiper) {
+                    initSlideVideos(swiper);
+                    playSlideVideo(swiper.slides[swiper.activeIndex]);
+                },
+                slideChangeTransitionStart(swiper) {
+                    pauseSlideVideo(swiper.slides[swiper.previousIndex]);
+
                     if (!isMobile) {
-                        const activeSlide = this.slides[this.activeIndex];
-                        const direction = this.swipeDirection;
-                        
-                        this.slides.forEach(slide => {
+                        const activeSlide = swiper.slides[swiper.activeIndex];
+                        const direction = swiper.swipeDirection;
+
+                        swiper.slides.forEach(slide => {
                             slide.classList.remove('bounceInLeft', 'bounceInRight');
                         });
-                        
-                        if (direction === 'next' || !direction) {
-                            activeSlide.classList.add('bounceInRight');
-                        } else {
-                            activeSlide.classList.add('bounceInLeft');
-                        }
+
+                        activeSlide.classList.add(
+                            direction === 'prev' ? 'bounceInLeft' : 'bounceInRight'
+                        );
                     }
+                },
+                slideChangeTransitionEnd(swiper) {
+                    playSlideVideo(swiper.slides[swiper.activeIndex]);
                 }
             }
         });
@@ -247,6 +409,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const listBlockSlider = document.querySelector('.block_slider_list');
     if (listBlockSlider) {
+        document.querySelectorAll('.mySwiper_list .swiper-slide').forEach(slide => {
+          const colCount = slide.querySelectorAll('.list').length;
+          slide.classList.add(`cols-${colCount}`);
+        });
+
         const listSwiper = new Swiper('.mySwiper_list', {
             spaceBetween: 0,
             loop: true,
@@ -282,11 +449,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     targetImage.classList.add('active');
                 }
             });
-        });
-        
-        const innerElements = document.querySelectorAll('.block_slider_list .inner');
-        innerElements.forEach(inner => {
-            inner.addEventListener('mouseleave', function() {
+            
+            nameElement.addEventListener('mouseleave', function() {
                 images.forEach(img => {
                     img.classList.remove('active');
                 });
@@ -295,6 +459,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
         });
+        
+        // const innerElements = document.querySelectorAll('.block_slider_list .inner');
+        // innerElements.forEach(inner => {
+        //     inner.addEventListener('mouseleave', function() {
+        //         images.forEach(img => {
+        //             img.classList.remove('active');
+        //         });
+        //         if (images[0]) {
+        //             images[0].classList.add('active');
+        //         }
+        //     });
+        // });
     }
 
     const searchBtn = document.querySelector('.search_btn');
@@ -408,67 +584,61 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function initStackingSections() {
-    const sections = Array.from(document.querySelectorAll('.section_block'));
-    let currentIndex = 0;
-    let isAnimating = false;
+        const sections = Array.from(document.querySelectorAll('.section_block'));
+        let currentIndex = 0;
+        let isAnimating = false;
 
-    // Расставляем z-index — каждая следующая выше
-    sections.forEach((section, i) => {
-        section.style.zIndex = i + 1;
-        if (i === 0) {
-            section.style.transform = 'translateY(0)';
-        } else {
-            section.style.transform = 'translateY(100%)';
+        sections.forEach((section, i) => {
+            section.style.zIndex = i + 1;
+            if (i === 0) {
+                section.style.transform = 'translateY(0)';
+            } else {
+                section.style.transform = 'translateY(100%)';
+            }
+            section.style.transition = 'transform 0.7s cubic-bezier(0.77, 0, 0.18, 1)';
+        });
+
+        function goToNext() {
+            if (isAnimating || currentIndex >= sections.length - 1) return;
+            isAnimating = true;
+
+            const next = sections[currentIndex + 1];
+            next.style.transform = 'translateY(0)';
+
+            currentIndex++;
+            setTimeout(() => { isAnimating = false; }, 700);
         }
-        section.style.transition = 'transform 0.7s cubic-bezier(0.77, 0, 0.18, 1)';
-    });
 
-    function goToNext() {
-        if (isAnimating || currentIndex >= sections.length - 1) return;
-        isAnimating = true;
+        function goToPrev() {
+            if (isAnimating || currentIndex <= 0) return;
+            isAnimating = true;
 
-        const next = sections[currentIndex + 1];
-        // Следующая секция едет сверху вниз — она уже имеет высокий z-index
-        next.style.transform = 'translateY(0)';
+            const current = sections[currentIndex];
+            current.style.transform = 'translateY(100%)';
 
-        currentIndex++;
-        setTimeout(() => { isAnimating = false; }, 700);
-    }
+            currentIndex--;
+            setTimeout(() => { isAnimating = false; }, 700);
+        }
 
-    function goToPrev() {
-        if (isAnimating || currentIndex <= 0) return;
-        isAnimating = true;
-
-        const current = sections[currentIndex];
-        // Текущая секция уезжает вниз — открывается предыдущая
-        current.style.transform = 'translateY(100%)';
-
-        currentIndex--;
-        setTimeout(() => { isAnimating = false; }, 700);
-    }
-
-    // Скролл колёсиком
-    window.addEventListener('wheel', (e) => {
-        if (e.deltaY > 0) goToNext();
-        else goToPrev();
-    }, { passive: true });
-
-    // Свайп на тач-устройствах
-    let touchStartY = 0;
-    window.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    window.addEventListener('touchend', (e) => {
-        const delta = touchStartY - e.changedTouches[0].clientY;
-        if (Math.abs(delta) > 50) {
-            if (delta > 0) goToNext();
+        window.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0) goToNext();
             else goToPrev();
-        }
-    }, { passive: true });
-}
+        }, { passive: true });
 
-initStackingSections();
+        let touchStartY = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
 
+        window.addEventListener('touchend', (e) => {
+            const delta = touchStartY - e.changedTouches[0].clientY;
+            if (Math.abs(delta) > 50) {
+                if (delta > 0) goToNext();
+                else goToPrev();
+            }
+        }, { passive: true });
+    }
+
+    initStackingSections();
     
 });

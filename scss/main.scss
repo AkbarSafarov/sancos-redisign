@@ -519,6 +519,8 @@ body {
         gap: 20px;
         align-items: center;
         justify-content: space-between;
+        position: relative;
+        z-index: 1;
 
         .logo {
             flex: 0 0 84px;
@@ -581,6 +583,7 @@ body {
     padding: 80px 0 28px;
     transition: all .5s;
     opacity: 0;
+    visibility: hidden;
 
     &:before {
         content: '';
@@ -595,6 +598,7 @@ body {
 
     &.opened {
         opacity: 1;
+        visibility: visible;
 
         &:before {
             bottom: 0;
@@ -628,16 +632,23 @@ body {
             text-align: center;
             color: #6a645d;
             width: 67px;
-            height: 40px;
+            height: 30px;
             position: absolute;
-            top: 0;
+            top: 5px;
             right: 5px;
-            line-height: 40px;
+            line-height: 30px;
             text-align: center;
             background: none;
             border: none;
             outline: none;
             cursor: pointer;
+            transition: all .3s;
+            border-radius: 2px;
+
+            &:hover {
+                background: #6A645D;
+                color: #fff;
+            }
         }
     }
 
@@ -646,12 +657,17 @@ body {
 
         form {
 
+            input {
+                height: 56px;
+            }
+
             .btn {
                 opacity: 0;
                 width: 50px;
                 font-size: 0;
                 right: auto;
                 left: 0;
+                height: 56px;
             }
         }
     }
@@ -804,6 +820,11 @@ body {
                 margin-bottom: 23px;
                 max-width: 420px;
             }
+
+            .btn_button  {
+                font-size: 13px;
+                padding: 11px 15px;
+            }
         }
 
         @media all and (max-width: 767px) {
@@ -948,7 +969,7 @@ body {
     }
 
     .swiper-slide {
-        width: 700px;
+        width: 40%;
         height: auto; 
         display: flex;
         align-items: center;
@@ -1177,11 +1198,11 @@ body {
         justify-content: start;
 
         @media all and (max-width: 1024px) {
-            padding: 6rem 1rem; 
+            padding: 8rem 1rem; 
         }
 
         @media all and (max-width: 767px) {
-            padding: 6rem 1rem; 
+            padding: 8rem 1rem; 
         }
     }
 
@@ -1201,10 +1222,16 @@ body {
         .btn_button{
             padding: 0.8125rem 1.25rem;
             font-size: 1.1875rem; 
+            cursor: text;
 
             @media all and (max-width: 767px) {
                 font-size: 1rem; 
                 padding: 0.625rem 1rem; 
+            }
+
+            &:hover {
+                background: none;
+                color: #fff;
             }
         }
     }
@@ -1224,7 +1251,7 @@ body {
 
         @media all and (max-width: 767px) {
             gap: 1.5rem; 
-            max-width: 95%;
+            max-width: 100%;
         }
 
         @media all and (max-width: 480px) {
@@ -1233,17 +1260,16 @@ body {
 
         .list {
             flex: 0 0 13.125rem; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             @media all and (max-width: 1024px) {
                 flex: 0 0 11rem; 
             }
 
             @media all and (max-width: 767px) {
-                flex: 0 0 9rem; 
-            }
-
-            @media all and (max-width: 480px) {
-                flex: 0 0 7rem; 
+                flex: 0 0 127px; 
             }
 
             .name {
@@ -1266,14 +1292,9 @@ body {
                     margin-bottom: 2rem; 
                 }
 
-                @media all and (max-width: 767px) {
-                    font-size: 1.125rem; 
-                    margin-bottom: 1.5rem; 
-                }
-
                 @media all and (max-width: 480px) {
-                    font-size: 0.875rem;
-                    margin-bottom: 1rem; 
+                    font-size: 19px;
+                    margin-bottom: 32px; 
                 }
 
                 &:last-child{
@@ -1296,6 +1317,21 @@ body {
 
         &.swiper-slide-active {
             opacity: 1 !important;
+        }
+
+        &.cols-3  {
+
+            .inner {
+                .list {
+                    @media all and (max-width: 767px) {
+                        flex: 0 0 100px;
+
+                        .name{
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -1419,7 +1455,7 @@ body {
             font-size: 36px;
             line-height: 120%;
             text-transform: uppercase;
-            margin-bottom: 16px;
+            margin-bottom: 17px;
             max-width: 420px;
         }
 
@@ -1428,8 +1464,8 @@ body {
             font-weight: 400;
             font-size: 17px;
             line-height: 140%;
-            margin-bottom: 23px;
-            max-width: 420px;
+            margin-bottom: 17px;
+            max-width: 375px;
         }
 
         .btn_button {
@@ -1482,6 +1518,22 @@ body {
             }
         }
     }
+}
+
+.swiper-slide video,
+.swiper-slide .slide-video-embed {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.swiper-slide .slide-video-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .footer {
@@ -2276,6 +2328,8 @@ body {
         }
 
         @media all and (max-width: 1010px) {
+            position: relative;
+
             .category_mobile {
                 position: absolute;
                 top: 0;
@@ -2285,15 +2339,43 @@ body {
                 cursor: pointer;
             }
 
+            .left_menu,
+            .contacts{
+                opacity: 1;
+                visibility: visible;
+                transition: all .3s;
+                transform: translateX(0);   
+            }
+
+            .back_wr {
+                display: block;
+            }
+
+            .right_menu {
+                transition: all .3s;
+                transform: translateX(-100%);  
+                display: block;
+                opacity: 0;
+                visibility: hidden; 
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #fff;
+            }
+
             &.active_categor {
                 .left_menu,
                 .contacts {
-                    display: none;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateX(-100%);   
                 }
 
-                .right_menu,
-                .back_wr {
-                    display: block;
+                .right_menu {
+                    visibility: visible;
+                    opacity: 1;
+                    transform: translateX(0);   
                 }
             }
         }
